@@ -16,7 +16,8 @@ pkgs=()
 if [ -f /etc/os-release ]; then
   . /etc/os-release
   id=${ID,,}
-  id_like=${ID_LIKE,,}
+  id_like="${ID_LIKE:-}"
+  id_like="${id_like,,}"
 else
   id=""
   id_like=""
@@ -46,7 +47,7 @@ case "${id}" in
       pkgs=(imagemagick libavif-bin webp libheif-examples ffmpeg)
     elif echo "$id_like" | grep -q rhel; then
       pkgman="dnf"
-      pkgs=(ImageMagick libavif libwebp-tools libheif ffmpeg)
+    pkgs=(ImageMagick libavif-tools libwebp-tools libheif-tools ffmpeg)
     else
       echo "Unsupported distro: $id. Please install: imagemagick, libavif (avifenc), webp (cwebp), libheif (heif-enc), ffmpeg" >&2
       exit 1

@@ -40,7 +40,8 @@ fi
 if [ -f /etc/os-release ]; then
   . /etc/os-release
   id=${ID,,}
-  id_like=${ID_LIKE,,}
+  id_like="${ID_LIKE:-}"
+  id_like="${id_like,,}"
 else
   id=""
   id_like=""
